@@ -1,0 +1,132 @@
+<div
+  class="container-fluid mt-2 flexBox"
+  style="background-color: #f0f0f0; height: auto"
+>
+  <div style="width: 50%">
+    <img
+      src="../../../assets/Images/homeCook.png"
+      alt=""
+      style="width: 100%; height: 100%; padding-right: 6rem"
+    />
+  </div>
+
+  <div style="width: 50%">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-area">
+        <div class="form-group">
+          <label class="my-1">Item Name</label>
+          <input
+            type="text"
+            placeholder={{item.name}}
+            class="form-control"
+            name="itemName"
+            formControlName="itemName"
+          />
+          <div
+            class="alert alert-danger"
+            *ngIf="fc.itemName.touched && fc.itemName.invalid"
+          >
+            <div *ngIf="fc.itemName.errors?.required">
+              Item Name is required
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="my-1">Item Cost</label>
+          <input
+            type="text"
+            placeholder={{item.cost}}
+            class="form-control"
+            name="itemCost"
+            formControlName="itemCost"
+          />
+          <div
+            class="alert alert-danger"
+            *ngIf="fc.itemCost.touched && fc.itemCost.invalid"
+          >
+            <div *ngIf="fc.itemCost.errors?.required">
+              Item Cost is required
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="my-1">Item Description</label>
+          <textarea
+            cols="30"
+            rows="10"
+            placeholder={{item.Desc}}
+            class="form-control"
+            name="itemDesc"
+            formControlName="itemDesc"
+          ></textarea>
+          <div
+            class="alert alert-danger"
+            *ngIf="fc.itemDesc.touched && fc.itemDesc.invalid"
+          >
+            <div *ngIf="fc.itemDesc.errors?.required">
+              Item Description is required
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="my-1">Item Category</label>
+
+          <select
+            class="form-select"
+            aria-label="Item Category"
+            name="itemCategory"
+            formControlName="itemCategory"
+            
+          >
+          <option selected>{{item.category}}</option>
+            <option value="1" *ngFor="let category of categories">
+              {{ category.name }}
+            </option>
+          </select>
+
+          <div
+            class="alert alert-danger"
+            *ngIf="fc.itemCategory.touched && fc.itemCategory.invalid"
+          >
+            <div *ngIf="fc.itemCategory.errors?.required">
+              Item Category is required
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-3 form-group">
+          <label for="formFile" class="form-label">Item Image</label>
+          <input class="form-control" type="file" name="itemImage"
+          formControlName="itemImage" />
+          <div
+            class="alert alert-danger"
+            *ngIf="fc.itemImage.touched && fc.itemImage.invalid"
+          >
+            <div *ngIf="fc.itemImage.errors?.required">
+              Item Image is required
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center my-3">
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="form.invalid"
+          >
+            Update Item
+          </button>
+          <button
+           
+          class="btn btn-primary mx-2"
+        routerLink="../items"
+        >
+          Take Back
+        </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

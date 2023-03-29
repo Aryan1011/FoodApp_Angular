@@ -1,0 +1,62 @@
+<div class="container">
+
+
+    <div class="addCategory text-center my-3" >
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="form-area" >
+            <div class="form-group flexBox">
+              <div>
+                <label class="my-1">Category Name</label>
+              </div>
+              <div class="mx-2">
+                <input
+                  type="text"
+                  placeholder="Enter Category Name"
+                  class="form-control"
+                  name="categoryName"
+                  formControlName="categoryName"
+                />
+                <div
+                  class="alert alert-danger"
+                  *ngIf="fc.categoryName.touched && fc.categoryName.invalid">
+
+                  <div *ngIf="fc.categoryName.errors?.required">
+                    Category Name is required
+                  </div>
+                </div>
+              </div>
+              <div class="text-center mx-3"> 
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  [disabled]="form.invalid"
+                >
+                  Add Category
+                </button>
+              </div>
+            </div>
+    
+          </div>
+        </form>
+      </div>
+
+
+  <table class="table table-striped my-5">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Category Name</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let category of categories; let index = index">
+        <td>{{ index + 1 }}</td>
+        <td>{{ category.name }}</td>
+        <td><button class="btn btn-primary">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+ 
+</div>

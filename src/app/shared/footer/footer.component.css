@@ -1,0 +1,14 @@
+.Footer{
+    height: 300px;
+    background-color:#262626 ;
+    width: 100%;
+}
+.aboutFooter{
+    width: 33%;
+}
+.linkFooter{
+    width: 33%;
+}
+.contactFooter{
+    width: 33%;
+}

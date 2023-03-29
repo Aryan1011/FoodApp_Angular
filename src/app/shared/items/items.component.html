@@ -1,0 +1,36 @@
+<div class="container-fluid" *ngFor="let category of categories;let cat=index">
+
+  <div class="alert alert-warning" role="alert">
+    {{category.categoryName}}
+  </div>
+
+  <div class="row">
+    <div *ngFor="let item of items;let index=index"  class="col-3">
+
+
+      <div class="card" style="width: 14rem; height: 22rem">
+        <div class="imgContainer">
+          <img
+            src='../../../assets/Images/homeDelivery.png'
+            class="card-img-top"
+            alt="..."
+          />
+        </div>
+        <div class="card-body">
+          <h5 class="card-title text-center mt-1">{{item.itemName}} </h5>
+          <p class="card-text" style="font-size: 0.9rem;"><em>
+              {{item.itemDesc}}
+          </em>
+          </p>
+          <h6 class="text-center">Price = {{item.itemCost}}/-</h6>
+          <div class="buttonAdd">
+            <button class="btn btn-primary">Add To Cart</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+</div>

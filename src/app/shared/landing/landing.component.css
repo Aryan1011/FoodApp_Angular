@@ -1,0 +1,78 @@
+.flexBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.flexBoxEven {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+/* Landing Page */
+.containerLanding {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+}
+.mainLanding {
+  width: 50%;
+  position: relative;
+}
+.imgLanding {
+  width: 50%;
+}
+.imgLanding img {
+  height: 100%;
+  width: 100%;
+}
+
+.landingMainUpper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: absolute;
+  top: -320px;
+}
+.landingContent {
+    margin-left: 8rem;
+  position: absolute;
+  top: -100px;
+}
+
+.featuresLanding{
+    background-color: #2b1e16;
+    height: 300px;
+    overflow: hidden;
+}
+.featureImg{
+    height: 200px;
+    margin-bottom: 2rem;
+}
+.featureImg img{
+    margin-top: 10px;
+    height: 100%;
+    width: 100%;
+}
+.felanding p{
+    font-size: 1.25rem;
+}
+.android{
+    width: 100%;
+}
+.androidContent{
+    width: 50%;
+    margin: 2rem;
+}
+.androidContent h1{
+    font-weight: 4000;
+}
+.androidImg{
+    width: 50%;
+}
+.androidImg img{
+    width: 100%;
+    height: 100%;
+}
