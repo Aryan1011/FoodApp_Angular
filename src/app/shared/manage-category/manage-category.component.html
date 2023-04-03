@@ -52,8 +52,8 @@
     <tbody>
       <tr *ngFor="let category of categories; let index = index">
         <td>{{ index + 1 }}</td>
-        <td>{{ category.name }}</td>
-        <td><button class="btn btn-primary">Delete</button></td>
+        <td>{{ category.categoryName }}</td>
+        <td><button class="btn btn-primary" (click)="onDelete(category.categoryName)">Delete</button></td>
       </tr>
     </tbody>
   </table>

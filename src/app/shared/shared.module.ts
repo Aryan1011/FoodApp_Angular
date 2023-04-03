@@ -13,10 +13,17 @@ import { ManageOrderComponent } from './manage-order/manage-order.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ViewOrderComponent } from './view-order/view-order.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from '../app-routing.module';
-import { adminApiService } from 'src/app/services/admin/adminapi.service';
 import { ManageItemComponent } from './manage-item/manage-item.component';
+import { HttpClientModule } from '@angular/common/http';
+import { categoryApiService } from './manage-category/categoryapi.service';
+import { orderApiService } from './manage-order/orderapi.service';
+import { FoodcartComponent } from './foodcart/foodcart.component';
+import { foodcartApiService } from './foodcart/foodcartapi.service';
+import { CartComponent } from './cart/cart.component';
+import { itemApiService } from './add-item/itemapi.service';
+import { MyOrdersComponent } from './my-orders/my-orders.component';
+import { RouterModule } from '@angular/router';
+
 
 @NgModule({
   declarations: [
@@ -32,14 +39,17 @@ import { ManageItemComponent } from './manage-item/manage-item.component';
     ManageOrderComponent,
     NotFoundComponent,
     ViewOrderComponent,
-    ManageItemComponent
+    ManageItemComponent,
+    FoodcartComponent,
+    CartComponent,
+    MyOrdersComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-   BrowserModule,
-   AppRoutingModule
+   RouterModule,
+   HttpClientModule
   ],
   exports:[NavbarComponent,
     AddItemComponent,
@@ -55,7 +65,7 @@ import { ManageItemComponent } from './manage-item/manage-item.component';
     ViewOrderComponent,
     ManageItemComponent
   ],
-    providers:[adminApiService]
+    providers:[ categoryApiService,orderApiService,foodcartApiService,itemApiService]
 
 })
 export class SharedModule { }

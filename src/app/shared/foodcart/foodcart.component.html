@@ -1,0 +1,98 @@
+<!-- <p>{{foodcart.cartId}}</p> -->
+
+<div style="width: 100%;" class="flexBox">
+    <div style="width: 80%;">
+        <div class="alert alert-primary" role="alert">
+            Cart Details
+          </div>
+          <table class="table table-striped table-hover">
+
+            <thead>
+                <tr>
+                    <th>Fields</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>Date</th>
+                    <th>{{foodcart?.date}}</th>
+                </tr>
+                <tr>
+                    <th>Cost</th>
+                    <th>{{foodcart?.cost}}</th>
+                </tr>
+            </tbody>
+
+          </table>
+
+
+
+
+
+          <div class="alert alert-primary" role="alert">
+            Items
+          </div>
+          <table class="table table-striped table-hover">
+
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of foodcart?.orderItems">
+                    <th>{{item.itemName}}</th>
+                    <th>{{item.quantity}}</th>
+                </tr>
+            </tbody>
+
+          </table>
+
+
+
+
+
+
+        <div class="alert alert-primary" role="alert">
+            Customer Details
+          </div>
+
+          <table class="table table-striped table-hover">
+            <thead>
+
+                <tr>
+                    <th>
+                        Fields
+                    </th>
+                    <th>
+                        Value
+                    </th>
+                </tr>
+            </thead>
+<tbody>
+    
+    <tr>
+        <td>Customer Name</td>
+        <td>{{foodcart?.customer?.customerName}}</td>
+    </tr>
+    <tr>
+        <td>Customer Phone</td>
+        <td>{{foodcart?.customer?.customerPhone}}</td>
+            </tr>
+            <tr>
+                <td>Customer Address</td>
+                <td>{{foodcart?.customer?.customerAddress}}</td>
+            </tr>
+            <tr>
+                <td>Customer Mail</td>
+                <td>{{foodcart?.customer?.customerMail}}</td>
+            </tr>
+            
+        </tbody>
+            
+        </table>
+        
+    </div>
+</div>

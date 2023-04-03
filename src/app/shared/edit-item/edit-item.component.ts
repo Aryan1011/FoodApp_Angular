@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms'
+import { itemApiService } from '../add-item/itemapi.service';
+import { categoryApiService } from '../manage-category/categoryapi.service';
+import { ActivatedRoute } from '@angular/router';
+
 @Component({
   selector: 'app-edit-item',
   templateUrl: './edit-item.component.html',
@@ -7,54 +11,54 @@ import { Validators, FormBuilder } from '@angular/forms'
 })
 export class EditItemComponent implements OnInit {
   
-  item={
-    "name":"pulav",
-    "cost":100,
-    "Desc":"Veg-Pulav",
-    "category":"North-Indian",
-    "image":"../../../assets/Images/homeCook.png"
-  }
+  item:any;
+  categories:any;
+  id?:any
   
-  categories=[
-    {
-      id:1,
-      name:"chinese"
-    },
-    {
-      id:2,
-      name:"North Indian"
-    },
-    {
-      id:3,
-      name:"Drinks"
-    },
-    {
-      id:5,
-      name:"Italian"
-    }
 
-  ]
   form:any;
-  constructor(fb:FormBuilder) {
+  constructor(fb:FormBuilder,private _itemApiService:itemApiService, private _categoryApiService:categoryApiService,private route:ActivatedRoute) {
+    this.route.paramMap.subscribe(value=>{
+      this.id = value.get('id');
+      this._itemApiService.getSingleItem(this.id)
+      .subscribe(data=>{
+        this.item=data;
+      })
+    })
     this.form= fb.group({
-      itemName:[this.item.name,Validators.required],
+      
+      // itemName:['',Validators.required],
       itemCost:['',Validators.required],
       itemDesc:['',[
         Validators.required
       ]],
-      itemCategory:['',[Validators.required]],
-      itemImage:['',Validators.required]
+      // itemCategory:[this.item?.itemName,[Validators.required]],
+      // itemImage:['',Validators.required]
     })
    }
 
   ngOnInit(): void {
+    this._categoryApiService.getAllCategories()
+    .subscribe(data=>{
+      this.categories=data;
+    })
+
   }
   get fc(){
     return this.form.controls;
    }
 
    onSubmit(){
-    console.log(this.form.value);
+    this._itemApiService.updateItem({
+      itemName:this.item.itemName,
+      itemCost:this.form.value.itemCost,
+      itemDesc:this.form.value.itemDesc,
+      itemCategory:this.item.category.categoryName,
+
+    })
+    .subscribe(data=>{
+      alert("Record Updated");
+    })
    }
 
 }

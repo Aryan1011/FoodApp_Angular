@@ -70,7 +70,7 @@
           </div>
         </div>
 
-        <div class="form-group">
+        <!-- <div class="form-group">
           <label class="my-1">Item Category</label>
 
           <select
@@ -79,8 +79,8 @@
             name="itemCategory"
             formControlName="itemCategory"
           >
-            <option value="1" *ngFor="let category of categories">
-              {{ category.name }}
+            <option [value]= category.categoryName *ngFor="let category of categories">
+              {{ category.categoryName }}
             </option>
           </select>
 
@@ -92,9 +92,9 @@
               Item Category is required
             </div>
           </div>
-        </div>
+        </div> -->
 
-        <div class="mb-3 form-group">
+        <!-- <div class="mb-3 form-group">
           <label for="formFile" class="form-label">Item Image</label>
           <input class="form-control" type="file" name="itemImage"
           formControlName="itemImage" />
@@ -106,7 +106,7 @@
               Item Image is required
             </div>
           </div>
-        </div>
+        </div> -->
 
         <div class="text-center my-3">
           <button
@@ -115,13 +115,6 @@
             [disabled]="form.invalid"
           >
             Add Item
-          </button>
-          <button
-           
-            class="btn btn-primary mx-2"
-          routerLink="../items"
-          >
-            Take Back
           </button>
         </div>
       </div>

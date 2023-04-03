@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';;
+import { RouterModule, Routes } from '@angular/router';import { AddItemComponent } from './shared/add-item/add-item.component';
 import { LandingComponent } from './shared/landing/landing.component';
+import { RegisterComponent } from './shared/register/register.component';
 import { LoginComponent } from './shared/login/login.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
-import { RegisterComponent } from './shared/register/register.component';
+import { AuthGuard } from './guards/auth.guard';
+import { UserGuard } from './guards/user.guard';
 
 const routes: Routes = [
   {
@@ -19,14 +21,18 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path:'admin', loadChildren:()=>import('./modules/admin/admin.module').then(mod=>mod.AdminModule),
+    path: '', redirectTo:'/landing', pathMatch:'full'
   },
   {
-    path: '', redirectTo:'/landing', pathMatch:'full'
+    path:'admin', canActivate:[AuthGuard], loadChildren:()=>import('src/app/modules/admin/admin.module').then(m=>m.AdminModule),
+  },
+  {
+    path:'user', canActivate:[UserGuard], loadChildren:()=>import('src/app/modules/user/user.module').then(m=>m.UserModule)
   },
   {
     path:'**', component:NotFoundComponent
   },
+
 ];
 
 @NgModule({

@@ -14,25 +14,36 @@
       </button>
       <div class="collapse navbar-collapse pt-3 navItems" id="navbarNav">
         <ul class="navbar-nav navite">
-          <li class="nav-item">
-            <p class="nav-link" style="margin-right: 500px; margin-left: 1rem">
+          <li class="nav-item"  routerLink="./items" *ngIf="!isAdmin" >
+            <p class="nav-link" >
               <strong>Home</strong>
             </p>
           </li>
-          <li class="nav-item " routerLink="../view-order">
-            <p class="nav-link mx-2 "><strong>Orders</strong></p>
+          <li class="nav-item " routerLink="./manage-order" *ngIf="isAdmin" >
+            <p class="nav-link mx-2" > <strong>Orders</strong></p>
           </li>
-          <li class="nav-item" routerLink="../manage-category">
+          <li class="nav-item" [routerLink]="['./my-orders',customerId]" *ngIf="!isAdmin">
+            <p class="nav-link mx-2 " ><strong>My Orders</strong></p>
+          </li>
+          <li class="nav-item" routerLink="./manage-category" *ngIf="isAdmin">
             <p class="nav-link mx-2 " ><strong>Category</strong></p>
           </li>
-          <li class="nav-item" routerLink="../manage-item"> 
+          <li class="nav-item" routerLink="./manage-item" *ngIf="isAdmin"> 
             <p class="nav-link mx-2 " ><strong>Item</strong></p>
           </li>
-          <li class="nav-item" routerLink="../cart">
+          <li class="nav-item" routerLink="./cart" *ngIf="!isAdmin">
             <p class="nav-link mx-2"><strong>Cart</strong></p>
           </li>
-          <li class="nav-item" routerLink="../help">
+          <li class="nav-item" routerLink="./help " *ngIf="!isAdmin">
             <p class="nav-link mx-2 "><strong>Help</strong></p>
+          </li>
+          <li class="nav-item " >
+            <button class="btn btn-primary" (click)="logoutAdmin()" *ngIf="isAdmin">
+              Logout
+            </button>
+            <button class="btn btn-primary" (click)="logoutUser()" *ngIf="!isAdmin">
+              Logout
+            </button>
           </li>
         </ul>
       </div>

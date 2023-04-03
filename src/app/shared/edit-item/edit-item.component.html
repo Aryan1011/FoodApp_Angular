@@ -13,11 +13,11 @@
   <div style="width: 50%">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="form-area">
-        <div class="form-group">
+        <!-- <div class="form-group">
           <label class="my-1">Item Name</label>
           <input
             type="text"
-            placeholder={{item.name}}
+            placeholder="{{ item.name }}"
             class="form-control"
             name="itemName"
             formControlName="itemName"
@@ -30,12 +30,12 @@
               Item Name is required
             </div>
           </div>
-        </div>
+        </div> -->
         <div class="form-group">
           <label class="my-1">Item Cost</label>
           <input
             type="text"
-            placeholder={{item.cost}}
+            placeholder="{{ item.cost }}"
             class="form-control"
             name="itemCost"
             formControlName="itemCost"
@@ -55,7 +55,7 @@
           <textarea
             cols="30"
             rows="10"
-            placeholder={{item.Desc}}
+            placeholder="{{ item.Desc }}"
             class="form-control"
             name="itemDesc"
             formControlName="itemDesc"
@@ -70,7 +70,7 @@
           </div>
         </div>
 
-        <div class="form-group">
+        <!-- <div class="form-group">
           <label class="my-1">Item Category</label>
 
           <select
@@ -80,7 +80,6 @@
             formControlName="itemCategory"
             
           >
-          <option selected>{{item.category}}</option>
             <option value="1" *ngFor="let category of categories">
               {{ category.name }}
             </option>
@@ -94,9 +93,9 @@
               Item Category is required
             </div>
           </div>
-        </div>
+        </div> -->
 
-        <div class="mb-3 form-group">
+        <!-- <div class="mb-3 form-group">
           <label for="formFile" class="form-label">Item Image</label>
           <input class="form-control" type="file" name="itemImage"
           formControlName="itemImage" />
@@ -108,7 +107,7 @@
               Item Image is required
             </div>
           </div>
-        </div>
+        </div> -->
 
         <div class="text-center my-3">
           <button
@@ -118,13 +117,6 @@
           >
             Update Item
           </button>
-          <button
-           
-          class="btn btn-primary mx-2"
-        routerLink="../items"
-        >
-          Take Back
-        </button>
         </div>
       </div>
     </form>

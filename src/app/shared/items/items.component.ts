@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { adminApiService } from 'src/app/services/admin/adminapi.service';
+import { itemApiService } from '../add-item/itemapi.service';
+import { categoryApiService } from '../manage-category/categoryapi.service';
+import { foodcartApiService } from '../foodcart/foodcartapi.service';
+import { Item } from '../foodcart/item';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-items',
@@ -9,89 +13,26 @@ import { adminApiService } from 'src/app/services/admin/adminapi.service';
 
 export class ItemsComponent implements OnInit {
 
-  categories:any
+  data:any
 
+ 
+  constructor(private _itemApiService:itemApiService, private _categoryApiService:categoryApiService,
+     private _foodcartApiService:foodcartApiService,
+     private router:Router) { }
 
-  // items = [
-  //   {
-  //     id:1,
-  //     img:'../../../assets/Images/homeDelivery.png',
-  //     title:'Dal Makhni',
-  //     desc:'Great Dal lorem adknkasdda ealjfkja lef lke falk fds lfkn',
-  //     price:40,
-  //     category:"North-Indian"
-  //   },
-  //   {
-  //     id:2,
-  //     img:'../../../assets/Images/homeDelivery.png',
-  //     title:'Dal Makhni',
-  //     desc:'Great Dal',
-  //     price:40,
-  //     category:"North-Indian"
-  //   },
-  //   {
-  //     id:3,
-  //     img:'../../../assets/Images/homeDelivery.png',
-  //     title:'Dal Makhni',
-  //     desc:'Great Dal',
-  //     price:40,
-  //     category:"North-Indian"
-  //   },
-  //   {
-  //     id:4,
-  //     img:'../../../assets/Images/homeDelivery.png',
-  //     title:'Dal Makhni',
-  //     desc:'Great Dal',
-  //     price:40,
-  //     category:"North-Indian"
-  //   },
-  //   {
-  //     id:5,
-  //     img:'../../../assets/Images/homeDelivery.png',
-  //     title:'Dal Makhni',
-  //     desc:'Great Dal',
-  //     price:40,
-  //     category:"North-Indian"
-  //   }
-  // ]
-
-  items:any;
-
-
-  constructor(private _adminApiService: adminApiService) { }
 
   ngOnInit(): void {
-    this._adminApiService.getCategory()
-    .subscribe(
-      data=>{
-          this.categories=data;
-      }
-    );
-    this._adminApiService.getItems()
-    .subscribe(
-      data=>{
-          this.items=data;
-      }
-    );
+   
+    this._itemApiService.getByView()
+    .subscribe(data=>{
+      this.data=data;
+    })
 
-    // this._adminApiService.getItemByParam("Chinese")
-    // .subscribe(
-    //   data=>{
-    //     this.items=data;
-    //   }
-    // )
-
-  //   var obj = {
-  //     categoryName:"Chinese"
-  //   };
-
-  //   this._adminApiService.getItemByCategory(obj)
-  //   .subscribe(
-  //     data=>{
-  //       console.log(data);
-  //       this.items=data;
-  //     }
-  //   )
-  // }
     }
+
+    addToCart(item:Item){
+      this._foodcartApiService.addToCart(item);
+      this.router.navigateByUrl('/user/cart');
+    }
+        
 }

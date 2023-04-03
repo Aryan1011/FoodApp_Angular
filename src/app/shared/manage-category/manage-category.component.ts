@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms'
+import { categoryApiService } from './categoryapi.service';
+
 @Component({
   selector: 'app-manage-category',
   templateUrl: './manage-category.component.html',
@@ -8,27 +10,9 @@ import { Validators, FormBuilder } from '@angular/forms'
 export class ManageCategoryComponent implements OnInit {
 
   form:any;
-  categories=[
-    {
-      id:1,
-      name:"chinese"
-    },
-    {
-      id:2,
-      name:"North Indian"
-    },
-    {
-      id:3,
-      name:"Drinks"
-    },
-    {
-      id:5,
-      name:"Italian"
-    }
+  categories:any;
 
-  ]
-
-  constructor(fb:FormBuilder) { 
+  constructor(fb:FormBuilder, private _categoryApiService:categoryApiService) { 
     this.form= fb.group({
       categoryName:['',[
         Validators.required
@@ -37,6 +21,12 @@ export class ManageCategoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this._categoryApiService.getAllCategories()
+    .subscribe(data=>{
+      this.categories=data;
+    })
+
   }
 
   get fc(){
@@ -44,7 +34,19 @@ export class ManageCategoryComponent implements OnInit {
    }
 
    onSubmit(){
-    console.log(this.form.value);
+    this._categoryApiService.addCategoryByName(this.form.value)
+    .subscribe((data)=>{
+      this.ngOnInit();
+      alert("Category inserted");
+    })
+   }
+
+   onDelete(name:String){
+      this._categoryApiService.deleteCategoryByName({name:name})
+      .subscribe(data=>{
+        this.ngOnInit();
+        alert("Category Deleted");
+      })
    }
 
 }

@@ -1,13 +1,13 @@
 <div class="container-fluid" >
-  <div *ngFor="let category of categories;let cat=index">
+  <div *ngFor="let category of data;let index=index">
 
   
   <div class="alert alert-warning" role="alert">
-    {{category.categoryName}}
+    {{category?.categoryName}}
   </div>
   
-  <div class="row">
-    <div *ngFor="let item of items;let index=index"  class="col-3">
+  <div class="row" > 
+    <div *ngFor="let item of category?.items;let i=index"  class="col-3">
       
       
       <div class="card" style="width: 14rem; height: 22rem">
@@ -19,39 +19,35 @@
           />
         </div>
         <div class="card-body">
-          <h5 class="card-title text-center mt-1">{{item.itemName}} </h5>
+          <h5 class="card-title text-center mt-1">{{item?.itemName}} </h5>
           <p class="card-text" style="font-size: 0.9rem;"><em>
-            {{item.itemDesc}}
+            {{item?.itemDesc}}
           </em>
         </p>
-        <h6 class="text-center">Price = {{item.itemCost}}/-</h6>
+        <h6 class="text-center">Price = {{item?.itemCost}}/-</h6>
         <div class="buttonAdd">
-          <button class="btn btn-primary" routerLink="../edit-item">Edit</button>
-          <button class="btn btn-primary mx-3">Delete</button>
+          <button class="btn btn-primary" [routerLink]="['../edit-item',item?.itemId]">Edit</button>
+          <button class="btn btn-primary mx-3" (click)="onDelete(item?.itemId)">Delete</button>
         </div>
       </div>
     </div>
     
   </div>
-  
-  
-</div>
-</div>
-
-
-
-<div class="card" style="width: 14rem; height: 18rem">
-  <div class="imgContainer">
-    <img
-    src='../../../assets/Images/Add.jpg'
-    class="card-img-top mx-3"
-    alt="..."
-    />
-  </div>
-  <div class="text-center">
-    <button class="btn btn-primary mt-5" routerLink="../add-item" style="width: 60;">Add an Item</button>
+  <div class="card" style="width: 14rem; height: 22rem">
+    <div class="imgContainer">
+      <img
+      src='../../../assets/Images/Add.jpg'
+      class="card-img-top mx-3"
+      alt="..."
+      />
+    </div>
+    <div class="text-center">
+      <button class="btn btn-primary mt-5" [routerLink]="['../add-item',category?.categoryName]" style="width: 60;">Add Item to category</button>
+    </div>
+    
   </div>
   
+</div>
 </div>
 
 </div>

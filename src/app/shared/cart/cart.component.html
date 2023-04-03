@@ -1,0 +1,54 @@
+<div class="container" *ngIf="cart.totalPrice > 0; else notShow">
+  
+    <table class="table table-striped">
+
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Item</th>
+                <th>Select Quantity</th>
+                <th>Quantity</th>
+                <th>Cost</th>
+            </tr>
+        </thead>
+
+        <tbody  *ngFor="let cartItem of cart.orderItems; let i=index">
+            <tr>
+                <td>{{i+1}}</td>
+                <td>{{ cartItem?.food?.itemName }}</td>
+                <td><select
+                    #quantitySelect
+                    (change)="changeQuantity(cartItem, quantitySelect.value)"
+                  >
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select></td>
+                  <td>{{cartItem.itemQuantity}}</td>
+                  <td>{{ cartItem.price }}</td>
+                  <td><button class="btn btn-primary" (click)="removeFromCart(cartItem)">
+                    Remove Item
+                  </button></td>
+            </tr>
+        </tbody>
+
+    </table>
+  
+
+  <div class="text-center">
+    <p>Total Price = {{ cart.totalPrice }}</p>
+
+    <button class="btn btn-primary my-3 mx-3" (click)="makeOrder()">Make Order</button>
+    <button class="btn btn-primary my-3" (click)="goToItems()">Add Item</button>
+  </div>
+
+</div>
+
+<ng-template #notShow>
+  <div class="text-center my-5">
+    <h1>Cart is Empty</h1>
+    <button class="btn btn-primary my-5" (click)="goToItems()">Add Item</button>
+  </div>
+</ng-template>
