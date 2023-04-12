@@ -1,26 +1,28 @@
-<div class="containerLanding">
-  <div class="mainLanding">
-    <div class="landingMainUpper">
-      <div class="LandingLogo">
-        <img src="../../../assets/Images/homeLogo.png" alt="" />
-      </div>
-      <div class="flexBox">
-        <button class="btn btn-dark mx-1 btn-lg" routerLink="../login">Login</button>
-        <button class="btn btn-dark mx-1 btn-lg" routerLink="../register">Register</button>
-      </div>
-    </div>
+<div style="overflow: hidden;">
 
-    <div class="landingContent pl-2">
-      <h1 class="alert alert-dark">Hungry ?</h1>
-      <h1 class="alert alert-dark">Late night at office?</h1>
-      <h1 class="alert alert-dark">Cooking gone wrong?</h1>
-      <h1 class="alert alert-dark">Unexpected guests?</h1>
+  <div class="containerLanding">
+    <div class="mainLanding">
+    <div class="landingMainUpper">
+      <div class="landingLogo">
+        <img src="../../../assets/Images/homeLogo.png" alt=""  />
+      </div>
+      <div class="flexBox" style="padding-right: 60px;">
+        <button class="btn btn-dark mx-1" routerLink="../login">Login</button>
+        <button class="btn btn-dark mx-1"  routerLink="../register">Register</button>
+      </div>
+    </div>
+    
+    <div class="landingContent">   
+        <h1> <span id="words">Hungry ?</span> </h1>
+        <h4 class="text-secondary">Order food from favourite restaurants near you.</h4>
+        <h6 class="mt-5 pt-4 text-secondary">Popular in cities</h6>
+        <h6 class="text-secondary" style="margin-right: 20px;">Ahemdabad <b>Chennai</b> Gurgaon <b>Ludhiana</b> Chandigarh <b>Lucknow</b> Hyderabad <b>Pune</b> Kolkata <b>Delhi</b> & more. </h6>
+      </div>
+    </div>
+    <div class="imgLanding">
+      <img src="../../../assets/Images/homeHero.png" alt="" />
     </div>
   </div>
-  <div class="imgLanding">
-    <img src="../../../assets/Images/homeHero.png" alt="" />
-  </div>
-</div>
 
 <div class="flexBoxEven featuresLanding">
   <div class="felanding" style="margin-left: 2rem">
@@ -29,14 +31,14 @@
     </div>
     <p class="text-light">No Minimum Order</p>
   </div>
-
+  
   <div class="felanding">
     <div class="featureImg">
       <img src="../../../assets/Images/homeFeature2.jpg" alt="" />
     </div>
     <p class="text-light" style="margin-left: 2rem">Live Order Tracking</p>
   </div>
-
+  
   <div class="felanding" style="margin-right: 2rem">
     <div class="featureImg">
       <img src="../../../assets/Images/homeFeature3.jpg" alt="" />
@@ -58,3 +60,4 @@
   </div>
 </div>
 <app-footer></app-footer>
+</div>

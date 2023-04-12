@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
-
+import * as $ from "jquery";
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.component.html',
@@ -21,6 +21,24 @@ export class LandingComponent implements OnInit {
      if(this._userService.isCustomerLoggedIn()){
       this.router.navigate(['user/items']);
      }
+     this.a;
   }
+
+  a=function change() {
+    var words=[
+      "Hungry?",
+      "Late night at office?",
+      "Cooking gone wrong?",
+      "Unexpected guests?",
+      "Game Night?",
+      "Movie Marathon?"
+    ]
+    let i=0;
+    setInterval(function(){
+      $('#words').fadeOut(function(){
+        $(this).html(words[(i=(i+1)%words.length)]).fadeIn();
+      });
+    },1500)
+  }();
 
 }

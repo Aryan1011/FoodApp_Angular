@@ -31,7 +31,7 @@
                   class="btn btn-primary"
                   [disabled]="form.invalid"
                 >
-                  Add Category
+                  Add
                 </button>
               </div>
             </div>
@@ -46,14 +46,15 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">Category Name</th>
-        <th scope="col">Delete</th>
+        <th scope="col">Change Status</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let category of categories; let index = index">
         <td>{{ index + 1 }}</td>
         <td>{{ category.categoryName }}</td>
-        <td><button class="btn btn-primary" (click)="onDelete(category.categoryName)">Delete</button></td>
+        <td><button class="btn btn-primary" *ngIf="category.categoryStatus" (click)="onDelete(category.categoryName)">Discontinue</button>
+        <button class="btn btn-primary" *ngIf="!category.categoryStatus" (click)="onDelete(category.categoryName)">Continue</button></td>
       </tr>
     </tbody>
   </table>

@@ -15,11 +15,19 @@ import { Observable } from 'rxjs';
     getItems(): Observable<any>{
         return this.httpclient.get("http://localhost:8080/item/get")
     }
+   
 
     // Pass a string in object
     getItemByParam(obj:any):Observable<any>{
         let param1 = new HttpParams().set("id",obj.name);
         return this.httpclient.get("http://localhost:8080/item/getbycategory",{params:param1});
+    }
+
+    
+    // Pass a string in object to get true items for customers
+    getItemByTrueParam(obj:any):Observable<any>{
+        let param1 = new HttpParams().set("id",obj.name);
+        return this.httpclient.get("http://localhost:8080/item/getbycategorytrue",{params:param1});
     }
 
     getSingleItem(id:number):Observable<any>{

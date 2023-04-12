@@ -14,6 +14,9 @@ export class categoryApiService {
   getAllCategories(): Observable<any> {
     return this.httpclient.get(`${this.domain}/category/get`);
   }
+  getTrueCategories(): Observable<any> {
+    return this.httpclient.get(`${this.domain}/category/gettrue`);
+  }
 
   getCategoryByName(id: number): Observable<any> {
     return this.httpclient.get(`${this.domain}/category/get/${id}`);

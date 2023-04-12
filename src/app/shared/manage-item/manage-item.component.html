@@ -1,53 +1,75 @@
-<div class="container-fluid" >
-  <div *ngFor="let category of data;let index=index">
-
-  
-  <div class="alert alert-warning" role="alert">
-    {{category?.categoryName}}
+<div class="container flexBox my-2" style="justify-content: flex-start">
+  <div *ngFor="let category of categories">
+    <button
+      class="catBtn btn btn-outline-secondary mx-2"
+      (click)="show(category?.categoryName)"
+    >
+      {{ category?.categoryName }}
+    </button>
   </div>
-  
-  <div class="row" > 
-    <div *ngFor="let item of category?.items;let i=index"  class="col-3">
+</div>
+<div *ngIf="initial == true">
+  <div class="text-center my-5">
+    <h1 class="text-dark">Choose Category</h1>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div *ngFor="let item of items; let i = index" class="col-3">
       
-      
-      <div class="card" style="width: 14rem; height: 22rem">
-        <div class="imgContainer">
-          <img
-          src='../../../assets/Images/homeDelivery.png'
-          class="card-img-top"
-          alt="..."
-          />
-        </div>
-        <div class="card-body">
-          <h5 class="card-title text-center mt-1">{{item?.itemName}} </h5>
-          <p class="card-text" style="font-size: 0.9rem;"><em>
+        <div class="card">
+          <div class="imgContainer">
+            <img
+            [src]='item?.itemImage'
+            class="card-img-top"
+            alt="..."
+            style="width: 100%; height: 100%; border-radius: 0% !important;"
+            />
+          </div>
+          <div class="card-body">
+            <h5 class="card-title" ><b> {{item?.itemName}}</b> <button type="button" style="margin-left: 5px;" class="btn btn-sm btn-success starBtn">{{ratings[i%11]}} &#9733;</button></h5>
+          <p class="text-secondary cardDesc"><em>
             {{item?.itemDesc}}
           </em>
         </p>
-        <h6 class="text-center">Price = {{item?.itemCost}}/-</h6>
+        <h6 class="text-center">Price = {{item?.itemCost}}/-
+           <span class="mx-1"> &#x2022;</span>
+            <button type="button" class="btn btn-sm btn-outline-warning">Serves  {{serves[i%15]}}</button>   
+          </h6>
         <div class="buttonAdd">
-          <button class="btn btn-primary" [routerLink]="['../edit-item',item?.itemId]">Edit</button>
-          <button class="btn btn-primary mx-3" (click)="onDelete(item?.itemId)">Delete</button>
-        </div>
+          <button class="btn btn-primary" [routerLink]="['../edit-item', item?.itemId]">Edit</button>
+              <button class="btn btn-primary mx-1" *ngIf="item.itemStatus" (click)="onDelete(item?.itemId,item.category.categoryName)">Discontinue</button>
+              <button class="btn btn-primary mx-1" *ngIf="!item.itemStatus" (click)="onDelete(item?.itemId,item.category.categoryName)">Continue</button>
+            </div>
       </div>
     </div>
-    
-  </div>
-  <div class="card" style="width: 14rem; height: 22rem">
-    <div class="imgContainer">
-      <img
-      src='../../../assets/Images/Add.jpg'
-      class="card-img-top mx-3"
-      alt="..."
-      />
-    </div>
-    <div class="text-center">
-      <button class="btn btn-primary mt-5" [routerLink]="['../add-item',category?.categoryName]" style="width: 60;">Add Item to category</button>
-    </div>
-    
-  </div>
-  
-</div>
-</div>
 
+
+    </div>
+
+    <div
+      class="card"
+      style="width: 14rem; height: 22rem"
+      *ngIf="initial == false"
+    >
+      <div class="imgContainer" style="overflow: hidden; padding-right: 3rem;">
+        <img
+          src="../../../assets/Images/Add.jpg"
+          class="card-img-top mx-3"
+          alt="..."
+          style="margin-right: 1rem;"
+        />
+      </div>
+      <div class="text-center">
+        <button
+          class="btn btn-primary mt-5"
+          [routerLink]="['../add-item', cName]"
+          style="width: 60"
+        >
+          Add Item to category
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

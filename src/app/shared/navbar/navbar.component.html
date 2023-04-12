@@ -1,6 +1,8 @@
-<nav class="navbar navbar-expand bg-light">
+<div style="overflow: hidden;">
+
+  <nav class="navbar navbar-expand bg-light">
     <div class="container-fluid">
-      <img src="../../../assets/Images/logoNav.jpg" alt="" />
+      <img src="../../../assets/Images/logoNav.jpg" alt="" routerLink="/landing" style="cursor: pointer;" />
       <button
         class="navbar-toggler"
         type="button"
@@ -9,7 +11,7 @@
         aria-controls="navbarNav"
         aria-expanded="false"
         aria-label="Toggle navigation"
-      >
+        >
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse pt-3 navItems" id="navbarNav">
@@ -19,29 +21,29 @@
               <strong>Home</strong>
             </p>
           </li>
-          <li class="nav-item " routerLink="./manage-order" *ngIf="isAdmin" >
+          <li class="nav-item " routerLink="./manage-order" *ngIf="isAdmin" style="cursor: pointer;" >
             <p class="nav-link mx-2" > <strong>Orders</strong></p>
           </li>
-          <li class="nav-item" [routerLink]="['./my-orders',customerId]" *ngIf="!isAdmin">
+          <li class="nav-item" [routerLink]="['./my-orders',customerId]" *ngIf="!isAdmin" style="cursor: pointer;">
             <p class="nav-link mx-2 " ><strong>My Orders</strong></p>
           </li>
-          <li class="nav-item" routerLink="./manage-category" *ngIf="isAdmin">
+          <li class="nav-item" routerLink="./manage-category" *ngIf="isAdmin" style="cursor: pointer;">
             <p class="nav-link mx-2 " ><strong>Category</strong></p>
           </li>
-          <li class="nav-item" routerLink="./manage-item" *ngIf="isAdmin"> 
+          <li class="nav-item" routerLink="./manage-item" *ngIf="isAdmin" style="cursor: pointer;"> 
             <p class="nav-link mx-2 " ><strong>Item</strong></p>
           </li>
-          <li class="nav-item" routerLink="./cart" *ngIf="!isAdmin">
+          <li class="nav-item" routerLink="./cart" *ngIf="!isAdmin" style="cursor: pointer;">
             <p class="nav-link mx-2"><strong>Cart</strong></p>
           </li>
-          <li class="nav-item" routerLink="./help " *ngIf="!isAdmin">
+          <li class="nav-item" routerLink="./help" *ngIf="!isAdmin" style="cursor: pointer;">
             <p class="nav-link mx-2 "><strong>Help</strong></p>
           </li>
           <li class="nav-item " >
-            <button class="btn btn-primary" (click)="logoutAdmin()" *ngIf="isAdmin">
+            <button class="btn btn-primary" (click)="logoutAdmin()" *ngIf="isAdmin" style="cursor: pointer;">
               Logout
             </button>
-            <button class="btn btn-primary" (click)="logoutUser()" *ngIf="!isAdmin">
+            <button class="btn btn-primary" (click)="logoutUser()" *ngIf="!isAdmin" style="cursor: pointer;">
               Logout
             </button>
           </li>
@@ -50,3 +52,4 @@
     </div>
   </nav>
   
+</div>

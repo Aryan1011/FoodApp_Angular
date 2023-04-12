@@ -20,7 +20,6 @@ export class FoodcartComponent implements OnInit {
       this._foodcartApiService.getCart(this.id)
       .subscribe(data=>{
         this.foodcart=data;
-        console.log(data);
       })
     })
   }

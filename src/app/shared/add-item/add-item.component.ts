@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms'
 import { categoryApiService } from '../manage-category/categoryapi.service';
 import { itemApiService } from './itemapi.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-add-item',
   templateUrl: './add-item.component.html',
@@ -12,15 +12,17 @@ export class AddItemComponent implements OnInit {
   categories:any;
   categoryName:any;
   form:any;
-  constructor(fb:FormBuilder, private _categoryApiService:categoryApiService, private _itemApiService:itemApiService,private route:ActivatedRoute) {
+  // defaultPath:string="../../../assets/Images/dishes/";
+
+  constructor(fb:FormBuilder, private _categoryApiService:categoryApiService, private _itemApiService:itemApiService,private route:ActivatedRoute
+    ,private router:Router) {
     this.form= fb.group({
       itemName:['',Validators.required],
       itemCost:['',Validators.required],
       itemDesc:['',[
         Validators.required
       ]],
-      // itemCategory:['',[Validators.required]],
-      // itemImage:['',Validators.required]
+      itemImage:['',Validators.required]
     })
    }
 
@@ -44,10 +46,12 @@ export class AddItemComponent implements OnInit {
       itemName:this.form.value.itemName,
       itemDesc:this.form.value.itemDesc,
       itemCost:this.form.value.itemCost,
-      itemCategory:this.categoryName
+      itemCategory:this.categoryName,
+      itemImage:this.form.value.itemImage.replace(/^.*\\/, "")
     })
     .subscribe(data=>{
       alert("Item Added");
+      this.router.navigate(['/admin/manage-item']);
     })
    }
 

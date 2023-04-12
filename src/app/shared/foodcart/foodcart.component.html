@@ -38,13 +38,17 @@
             <thead>
                 <tr>
                     <th>Item</th>
+                    <th>Cost</th>
                     <th>Quantity</th>
+                    <th>Total</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let item of foodcart?.orderItems">
                     <th>{{item.itemName}}</th>
+                    <th>{{item?.item.itemCost}}</th>
                     <th>{{item.quantity}}</th>
+                    <th>{{item.quantity*item?.item.itemCost}}</th>
                 </tr>
             </tbody>
 

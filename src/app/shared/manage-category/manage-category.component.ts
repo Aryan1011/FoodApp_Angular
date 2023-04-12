@@ -45,7 +45,7 @@ export class ManageCategoryComponent implements OnInit {
       this._categoryApiService.deleteCategoryByName({name:name})
       .subscribe(data=>{
         this.ngOnInit();
-        alert("Category Deleted");
+        alert("Status Changed");
       })
    }
 

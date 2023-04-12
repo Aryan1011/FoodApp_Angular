@@ -3,20 +3,19 @@
         <table class="table table-striped">
           <thead>
             <tr>
-              <th scope="col">#</th>
               <th scope="col">Date</th>
-              <th scope="col">Phone</th>
+              <th scope="col">Cost</th>
               <th scope="col">Details</th>
               <th scope="col">Status</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let order of myOrders; let index = index">
-              <td>{{ order.orderId }}</td>
-              <td>{{ order.orderDate }}</td>
-              <td>{{ order.foodCart.customer.customerPhone }}</td>
+              <td>{{ order.orderDate | date :'medium'}}</td>
+              <td>{{ order.foodCart.cost }}</td>
               <td><button class="btn btn-primary" [routerLink]="['../../foodcart',order.foodCart.cartId]">view</button></td>
-              <td><button class="btn btn-primary" >{{order.status}}</button></td>
+              <td><button class="btn btn-primary" *ngIf="order.status!='Accept'" >{{order.status}}</button>
+              <button class="btn btn-primary" *ngIf="order.status=='Accept'" >Accepted</button></td>
                </tr>
           </tbody>
         </table>

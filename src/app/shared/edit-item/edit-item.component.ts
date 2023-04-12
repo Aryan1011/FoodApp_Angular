@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms'
 import { itemApiService } from '../add-item/itemapi.service';
 import { categoryApiService } from '../manage-category/categoryapi.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-item',
@@ -14,10 +14,9 @@ export class EditItemComponent implements OnInit {
   item:any;
   categories:any;
   id?:any
-  
 
   form:any;
-  constructor(fb:FormBuilder,private _itemApiService:itemApiService, private _categoryApiService:categoryApiService,private route:ActivatedRoute) {
+  constructor(private router:Router,fb:FormBuilder,private _itemApiService:itemApiService, private _categoryApiService:categoryApiService,private route:ActivatedRoute) {
     this.route.paramMap.subscribe(value=>{
       this.id = value.get('id');
       this._itemApiService.getSingleItem(this.id)
@@ -26,13 +25,10 @@ export class EditItemComponent implements OnInit {
       })
     })
     this.form= fb.group({
-      
-      // itemName:['',Validators.required],
       itemCost:['',Validators.required],
       itemDesc:['',[
         Validators.required
       ]],
-      // itemCategory:[this.item?.itemName,[Validators.required]],
       // itemImage:['',Validators.required]
     })
    }
@@ -58,6 +54,7 @@ export class EditItemComponent implements OnInit {
     })
     .subscribe(data=>{
       alert("Record Updated");
+      this.router.navigate(['/admin/manage-item']);
     })
    }
 

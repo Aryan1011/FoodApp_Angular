@@ -25,12 +25,14 @@ export class orderApiService{
   }
 
   changeOrderStatus(obj:any):Observable<any>{
-    console.log(obj);
     return this.httpclient.put(`${this.domain}/order/updatestatus`,obj);
   }
 
   getAll():Observable<any>{
     return this.httpclient.get(`${this.domain}/order/get`);
+  }
+  getByDate(id:string):Observable<any>{
+    return this.httpclient.get(`${this.domain}/order/getbydate/${id}`);
   }
 
 }

@@ -1,31 +1,51 @@
 .imgContainer{
+    height: 9rem;
     width: 12rem;
-    height: 10rem;
+    margin-left: 1rem;
+    margin-top: 1rem;
 }
-.img{
-    width: 100%;
-    height: 100%;
-    margin: 1rem;
-}
+
 
 .card{
     margin: 1rem 1rem;
+    border-radius: 0% !important;
+    border: none !important;
+    width: 14rem; 
+    height: 25rem
+}
+.card:hover{
+    border: 1px solid #fff !important;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+}
+.h5{
+    font-weight: 1000;
+}
+.starBtn{
+    height: 17px;
+    width: 53px;
+    padding-bottom: 23px;
+}
+.cardDesc{
+    font-size: 0.9rem ;
 }
 .buttonAdd{
     margin-left: 2.5rem;
     position: absolute;
-    top: 140px;    
+    top: 192px;
 }
 h6{
     position: absolute;
-    top: 110px;
-    left: 70px;    
+    top: 156px;
 }
 .card-body{
-    position: relative;
+position: relative;
 }
 
 .container-fluid{
-    background-color: #f0f0f0;
     padding-left: 2.5rem;
+}
+
+/* NEW  */
+.btn-outline-secondary:hover{
+    background-color: #F16A16;
 }

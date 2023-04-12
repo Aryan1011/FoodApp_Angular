@@ -12,9 +12,11 @@ import { Router } from '@angular/router';
 })
 
 export class ItemsComponent implements OnInit {
-
-  data:any
-
+  categories:any;
+  items:any;
+  initial:boolean=true;
+  ratings:any=[4.7,4.2,4.8,4.6,4.3,4.8,4.1,4.2,4.3,4.5,4.9]
+  serves:any=[1,1,2,2,1,2,1,2,1,1,2,2,1,1,2]
  
   constructor(private _itemApiService:itemApiService, private _categoryApiService:categoryApiService,
      private _foodcartApiService:foodcartApiService,
@@ -22,17 +24,28 @@ export class ItemsComponent implements OnInit {
 
 
   ngOnInit(): void {
-   
-    this._itemApiService.getByView()
-    .subscribe(data=>{
-      this.data=data;
-    })
+   this.getTrueCategories();
+  }
 
-    }
+  getTrueCategories(){
+    this._categoryApiService.getTrueCategories()
+    .subscribe(data=>{
+      this.categories=data;
+    })
+  }
+
 
     addToCart(item:Item){
       this._foodcartApiService.addToCart(item);
-      this.router.navigateByUrl('/user/cart');
+      alert("Item Added");
+      this.router.navigateByUrl('/user/items');
     }
-        
+
+    show(s:string){
+      this.initial=false;
+      this._itemApiService.getItemByTrueParam({name:s})
+      .subscribe(data=>{
+        this.items=data;
+      })
+    }   
 }

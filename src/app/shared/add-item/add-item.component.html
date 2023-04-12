@@ -70,31 +70,8 @@
           </div>
         </div>
 
-        <!-- <div class="form-group">
-          <label class="my-1">Item Category</label>
 
-          <select
-            class="form-select"
-            aria-label="Item Category"
-            name="itemCategory"
-            formControlName="itemCategory"
-          >
-            <option [value]= category.categoryName *ngFor="let category of categories">
-              {{ category.categoryName }}
-            </option>
-          </select>
-
-          <div
-            class="alert alert-danger"
-            *ngIf="fc.itemCategory.touched && fc.itemCategory.invalid"
-          >
-            <div *ngIf="fc.itemCategory.errors?.required">
-              Item Category is required
-            </div>
-          </div>
-        </div> -->
-
-        <!-- <div class="mb-3 form-group">
+        <div class="mb-3 form-group">
           <label for="formFile" class="form-label">Item Image</label>
           <input class="form-control" type="file" name="itemImage"
           formControlName="itemImage" />
@@ -106,7 +83,7 @@
               Item Image is required
             </div>
           </div>
-        </div> -->
+        </div>
 
         <div class="text-center my-3">
           <button
@@ -114,7 +91,7 @@
             class="btn btn-primary"
             [disabled]="form.invalid"
           >
-            Add Item
+            Add
           </button>
         </div>
       </div>

@@ -1,145 +1,68 @@
 
-<div class="accordion container my-5" id="accordionExample">
-  <div class="accordion-item">
-    <h2 class="accordion-header">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-        Pending Orders
-      </button>
-    </h2>
-    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-      
-        
-        <div>
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Date</th>
-                <th scope="col">Phone</th>
-                <th scope="col">Details</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let order of pendingOrders; let index = index">
-                <td>{{ order.orderId }}</td>
-                <td>{{ order.orderDate }}</td>
-                <td>{{ order.foodCart.customer.customerPhone }}</td>
-                <td><button class="btn btn-primary" [routerLink]="['../foodcart',order.foodCart.cartId]">view</button></td>
-                <td><button class="btn btn-primary" (click)="change('Accepted',order.orderId)">Accept</button></td>
-                <td><button class="btn btn-primary" (click)="change('Cancelled',order.orderId)">Cancel</button></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+<ng-template #welcome>
+  <div class="container my-5 text-center">
+    <h1 class="text-secondary" style="margin-top: 5rem; margin-bottom: 5em;"> Welcome to Manage orders.</h1>
+  </div>
+</ng-template>
+<ng-template #noOrder>
+  <div class="container my-5 text-center">
+    <h1 class="text-secondary" style="margin-top: 5rem; margin-bottom: 5em;"> No orders here yet.</h1>
+  </div>
+</ng-template>
 
+<div class=" container flexBox my-2" style="justify-content: flex-start;">
+    <button class="btn btn-outline-secondary mx-2" (click)="showNew()">New</button> 
+    <button class="btn btn-outline-secondary mx-2" (click)="showPreparing()" >Preparing</button>   
+    <button class="btn btn-outline-secondary mx-2" (click)="showReady()">Ready</button>   
+    <button class="btn btn-outline-secondary mx-2" (click)="showPast()">Past Orders</button>   
+</div>
+<div class="container" *ngIf="show!='displayWelcome';else welcome" >
 
-      </div>
+  <div *ngIf="orders?.length>0;else noOrder">
+
+    <div *ngIf="show=='past'" style="width: 40%;">
+      <label class="form-label" >Filter by Date</label>
+        <input type="date" class="form-control" #myDate>
+        <button class="btn btn-primary my-2" (click)="getByDate()">Filter</button>
     </div>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Date</th>
+          <th scope="col">Customer Name</th>
+          <th scope="col">Phone</th>
+          <th scope="col">Details</th>
+          <th *ngIf="Action!='null'" scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of orders | paginate:{
+          itemsPerPage: tableSize,
+          currentPage:page,
+          totalItems:count
+        }; let index=index">
+          <td>{{ order.orderDate | date :'medium' }}</td>
+          <td>{{ order.foodCart.customer.customerName }}</td>
+          <td>{{ order.foodCart.customer.customerPhone }}</td>
+          <td><button class="btn btn-primary" [routerLink]="['../foodcart',order.foodCart.cartId]">view</button></td>
+          <td><button *ngIf="Action!='null'" class="btn btn-primary" (click)="change(Action,order.orderId)">{{Action}}</button></td>
+        </tr>
+      </tbody>
+    </table>
+    <pagination-controls previousLabel="prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
+
+    </pagination-controls>
   </div>
 
-  <div class="accordion-item">
-    <h2 class="accordion-header">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-        Accepted Orders
-      </button>
-    </h2>
-    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        
-        <div>
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Date</th>
-                <th scope="col">Phone</th>
-                <th scope="col">Details</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let order of acceptedOrders; let index = index">
-                <td>{{ order.orderId }}</td>
-                <td>{{ order.orderDate }}</td>
-                <td>{{ order.foodCart.customer.customerPhone }}</td>
-                <td><button class="btn btn-primary" [routerLink]="['../foodcart',order.foodCart.cartId]">view</button></td>
-                <td><button class="btn btn-primary" (click)="change('Delivered',order.orderId)">Change Status to Delivered</button></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      
-      
-      
-      </div>
-    </div>
-  </div>
-
-  <div class="accordion-item">
-    <h2 class="accordion-header">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-        Cancelled Orders
-      </button>
-    </h2>
-    <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        <div>
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Date</th>
-                <th scope="col">Phone</th>
-                <th scope="col">Details</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let order of cancelledOrders; let index = index">
-                <td>{{ order.orderId }}</td>
-                <td>{{ order.orderDate }}</td>
-                <td>{{ order.foodCart.customer.customerPhone }}</td>
-                <td><button class="btn btn-primary" [routerLink]="['../foodcart',order.foodCart.cartId]">view</button></td>
-              </tr>
-            </tbody>
-          </table>
-        </div> </div>
-    </div>
-  </div>
-
-  <div class="accordion-item">
-    <h2 class="accordion-header">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
-        Delivered Orders
-      </button>
-    </h2>
-    <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        < <div>
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Date</th>
-                <th scope="col">Phone</th>
-                <th scope="col">Details</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let order of deliveredOrders; let index = index">
-                <td>{{ order.orderId }}</td>
-                <td>{{ order.orderDate }}</td>
-                <td>{{ order.foodCart.customer.customerPhone }}</td>
-                <td><button class="btn btn-primary" [routerLink]="['../foodcart',order.foodCart.cartId]">view</button></td>
-              </tr>
-            </tbody>
-          </table>
-        </div></div>
-    </div>
-  </div>
 
 
 
 </div>
+
+
+
+
 
 
 

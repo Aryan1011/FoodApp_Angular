@@ -15,36 +15,43 @@
   justify-content: center;
   align-items: center;
   width: 100vw;
+  height: 88vh;
 }
 .mainLanding {
-  width: 50%;
+  width: 56%;
   position: relative;
 }
 .imgLanding {
-  width: 50%;
+  width: 44%;
+  height: 100%;
 }
 .imgLanding img {
   height: 100%;
-  width: 100%;
+  width: 97%;
 }
 
 .landingMainUpper {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   position: absolute;
-  top: -320px;
+  top: -270px;
 }
 .landingContent {
-    margin-left: 8rem;
+  margin-left: 4rem;
   position: absolute;
-  top: -100px;
+  top: -50px;
 }
+
+
+
+
+
 
 .featuresLanding{
     background-color: #2b1e16;
-    height: 300px;
+    height: 340px;
     overflow: hidden;
 }
 .featureImg{

@@ -23,8 +23,9 @@ import { CartComponent } from './cart/cart.component';
 import { itemApiService } from './add-item/itemapi.service';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { RouterModule } from '@angular/router';
-
-
+import * as $ from "jquery";
+import {NgxPaginationModule} from 'ngx-pagination';
+import { HelpComponent } from './help/help.component'
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -42,14 +43,16 @@ import { RouterModule } from '@angular/router';
     ManageItemComponent,
     FoodcartComponent,
     CartComponent,
-    MyOrdersComponent
+    MyOrdersComponent,
+    HelpComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
    RouterModule,
-   HttpClientModule
+   HttpClientModule,
+   NgxPaginationModule
   ],
   exports:[NavbarComponent,
     AddItemComponent,
@@ -63,7 +66,8 @@ import { RouterModule } from '@angular/router';
     ManageOrderComponent,
     NotFoundComponent,
     ViewOrderComponent,
-    ManageItemComponent
+    ManageItemComponent,
+    HelpComponent
   ],
     providers:[ categoryApiService,orderApiService,foodcartApiService,itemApiService]
 
