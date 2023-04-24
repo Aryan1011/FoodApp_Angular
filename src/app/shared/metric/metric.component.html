@@ -1,0 +1,67 @@
+
+<div class="flexBox container" style="justify-content: flex-start;">
+    <button class="btn btn-primary" (click)="today()">Today</button>
+    <div style="width: 15%; margin-left: 3rem; margin-right: 1rem;">
+        <input type="date" class="form-control" #startDate>
+    </div>
+    <h4 style="padding-top: 10px; font-size: 1rem;">TO</h4>
+    <div style="width: 15%; margin-left: 1rem;">
+        <input type="date" class="form-control" #endDate>
+    </div>
+    <button class="btn btn-primary mx-2" (click)="getByDate()">Filter</button>
+    <button (click)="exportToExcel()" class="btn btn-success" *ngIf="!initial">Export</button>
+</div>
+
+
+<div class="box" *ngIf="!initial;else showButton">
+
+    
+    <div class="container flexBox " style="justify-content: space-around;">
+        <div class="card text-secondary">
+            <p><strong> Orders completed</strong></p>
+            <p class="mainValue"><strong>{{totalOrders}}</strong></p>
+        </div>
+        <div class="card text-secondary">
+            <p> <strong>Revenue Generated</strong></p>
+            <p class="mainValue"><strong>{{totalRevenue}}/-</strong></p>
+        </div>
+    </div>
+    
+<div class="container">
+    <h2 class="text-secondary text-center">
+        Items wise Breakdown
+    </h2>
+    
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Item Name</th>
+                <th>Quantity Sold</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let item of ItemQuantity| keyvalue | paginate:{
+            itemsPerPage: tableSize,
+            currentPage:page,
+            totalItems:count
+        };let index=index">
+        <tr>
+            <td>{{item?.key}}</td>
+            <td>{{item?.value}}</td>
+        </tr>
+    </tbody>
+</table>  
+<pagination-controls previousLabel="prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
+    
+</pagination-controls>
+</div>
+
+<div class="chart-container my-3">
+    <h2 class="text-secondary text-center">Category Wise Breakdown</h2>
+    <canvas  id="MyChart" >{{ chart }}</canvas>
+</div>
+</div>
+
+
+<ng-template #showButton>
+    <h1 class="text-secondary text-center my-5"> Please Choose a date</h1>
+</ng-template>

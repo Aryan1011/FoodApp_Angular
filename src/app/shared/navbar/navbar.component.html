@@ -39,6 +39,9 @@
           <li class="nav-item" routerLink="./help" *ngIf="!isAdmin" style="cursor: pointer;">
             <p class="nav-link mx-2 "><strong>Help</strong></p>
           </li>
+          <li class="nav-item" routerLink="./metric" *ngIf="isAdmin" style="cursor: pointer;">
+            <p class="nav-link mx-2 "><strong>Metrics</strong></p>
+          </li>
           <li class="nav-item " >
             <button class="btn btn-primary" (click)="logoutAdmin()" *ngIf="isAdmin" style="cursor: pointer;">
               Logout

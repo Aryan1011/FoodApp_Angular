@@ -8,6 +8,7 @@ import { ManageItemComponent } from 'src/app/shared/manage-item/manage-item.comp
 import { EditItemComponent } from 'src/app/shared/edit-item/edit-item.component';
 import { AddItemComponent } from 'src/app/shared/add-item/add-item.component';
 import { FoodcartComponent } from 'src/app/shared/foodcart/foodcart.component';
+import { MetricComponent } from 'src/app/shared/metric/metric.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,7 @@ const routes: Routes = [
       {path:'edit-item/:id',component:EditItemComponent},
       {path:'add-item/:id',component:AddItemComponent},
       {path:'foodcart/:id',component:FoodcartComponent},
+      {path:'metric',component:MetricComponent},
       {path:'',redirectTo:'admin/manage-order',pathMatch:'full'},
 
     ]

@@ -1,0 +1,21 @@
+.card{
+    width: 40%;
+    height: 24vh;
+    font-size: 1.8rem;
+    margin-top: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+}
+.mainValue{
+    font-size: 2.7rem !important;
+}
+
+.col-4{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+}
+
+.chartClass{
+    width: 600px;
+    height: 600px;
+}

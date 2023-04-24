@@ -20,7 +20,7 @@ import * as $ from "jquery";
     FontAwesomeModule,
     CommonModule,
     SharedModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

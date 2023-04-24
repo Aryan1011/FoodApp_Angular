@@ -44,6 +44,9 @@ export class RegisterComponent implements OnInit {
     .subscribe(data=>{
       alert("User Registered");
       this.router.navigate(['/login']);
+    },
+    error=>{
+      alert("User with gmail exists");
     })
    }
 }

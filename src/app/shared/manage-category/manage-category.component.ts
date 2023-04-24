@@ -38,6 +38,9 @@ export class ManageCategoryComponent implements OnInit {
     .subscribe((data)=>{
       this.ngOnInit();
       alert("Category inserted");
+    },
+    error=>{
+      alert("Category with same name exists");
     })
    }
 

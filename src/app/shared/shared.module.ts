@@ -23,9 +23,11 @@ import { CartComponent } from './cart/cart.component';
 import { itemApiService } from './add-item/itemapi.service';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { RouterModule } from '@angular/router';
-import * as $ from "jquery";
 import {NgxPaginationModule} from 'ngx-pagination';
-import { HelpComponent } from './help/help.component'
+import { HelpComponent } from './help/help.component';
+import { MetricComponent } from './metric/metric.component'
+import { metricApiService } from './metric/metricapi.service';
+import { NgChartsModule } from 'ng2-charts';
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -44,7 +46,8 @@ import { HelpComponent } from './help/help.component'
     FoodcartComponent,
     CartComponent,
     MyOrdersComponent,
-    HelpComponent
+    HelpComponent,
+    MetricComponent
   ],
   imports: [
     CommonModule,
@@ -52,7 +55,8 @@ import { HelpComponent } from './help/help.component'
     ReactiveFormsModule,
    RouterModule,
    HttpClientModule,
-   NgxPaginationModule
+   NgxPaginationModule,
+   NgChartsModule,
   ],
   exports:[NavbarComponent,
     AddItemComponent,
@@ -69,7 +73,7 @@ import { HelpComponent } from './help/help.component'
     ManageItemComponent,
     HelpComponent
   ],
-    providers:[ categoryApiService,orderApiService,foodcartApiService,itemApiService]
+    providers:[ categoryApiService,orderApiService,foodcartApiService,itemApiService,metricApiService]
 
 })
 export class SharedModule { }

@@ -52,6 +52,9 @@ export class AddItemComponent implements OnInit {
     .subscribe(data=>{
       alert("Item Added");
       this.router.navigate(['/admin/manage-item']);
+    },
+    error=>{
+      alert("Item with same name exists");
     })
    }
 
