@@ -28,7 +28,6 @@ export class foodcartApiService{
             cartCost:obj.totalPrice,
             cartItems:arr
         }
-        console.log(a);
         return this.httpclient.post(`${this.domain}/foodcart/makecart`,a);
     }
 
@@ -52,6 +51,11 @@ export class foodcartApiService{
 
    removeFromCart(foodId:number):void{
     this.cart.orderItems= this.cart.orderItems?.filter(item=> item.food?.itemId!=foodId);
+   }
+   deleteCart():void{
+    while(this.cart.orderItems?.length){
+        this.cart.orderItems.pop();
+    }
    }
 
    changeQuantity(foodId:number, quantity:number){

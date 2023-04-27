@@ -9,7 +9,15 @@ img{
 ul{
     position: relative;
 }
-button{
+.buttonDiv{
+    display: flex;
     position: absolute;
-    left: 1000px;
+    left: 950px;
+}
+.controlButtons{
+ position: relative;
+}
+.openClose{
+    position: absolute;
+    right: 20px;
 }

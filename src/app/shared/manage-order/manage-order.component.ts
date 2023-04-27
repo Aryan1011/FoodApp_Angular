@@ -58,6 +58,7 @@ export class ManageOrderComponent implements OnInit {
   getByDate(){
     this._orderApiService.getByDate(this.myDate?.nativeElement.value)
     .subscribe(data=>{
+      console.log(data);
       this.orders=data;
     })
   }

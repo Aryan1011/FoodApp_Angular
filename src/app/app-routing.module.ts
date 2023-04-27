@@ -6,6 +6,7 @@ import { LoginComponent } from './shared/login/login.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { AuthGuard } from './guards/auth.guard';
 import { UserGuard } from './guards/user.guard';
+import { LoginAdminComponent } from './shared/login-admin/login-admin.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'loginadmin',
+    component: LoginAdminComponent
   },
   {
     path: '', redirectTo:'/landing', pathMatch:'full'

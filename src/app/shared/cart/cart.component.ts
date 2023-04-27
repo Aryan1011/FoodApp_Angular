@@ -15,12 +15,21 @@ export class CartComponent implements OnInit {
      this.setCart();
     }
 
-
+    isOpen?:boolean;
   cart!:cartOrder
     cartId?:number;
 
   ngOnInit(): void {
-    
+    this.setIsOpen();
+  }
+
+  setIsOpen(){
+    if(localStorage.getItem("open")){
+      this.isOpen=true;
+    }
+    else{
+      this.isOpen=false;
+    }
   }
 
   removeFromCart(cartItem:CartItem){
@@ -45,6 +54,7 @@ export class CartComponent implements OnInit {
       this._orderApiService.makeOrder(data.cartId)
       .subscribe(data=>{
         alert("Food Ordered");
+        this._foodcartApiService.deleteCart();
         this.router.navigate(['user/items'])
       })
     })

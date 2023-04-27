@@ -1,6 +1,17 @@
-<div class=" container flexBox my-2" style="justify-content: flex-start;">
+
+<ng-template #notOpen>
+  <div class="text-secondary text-center my-5">
+    <h1>Sorry, We are closed.</h1>
+
+  </div>
+</ng-template>
+
+<div *ngIf="isOpen; else notOpen">
+
+  
+  <div class=" container flexBox my-2" style="justify-content: flex-start;">
   <div *ngFor="let category of categories">
-      <button class="catBtn btn btn-outline-secondary mx-2" (click)="show(category.categoryName)">{{category.categoryName}}</button> 
+    <button class="catBtn btn btn-outline-secondary mx-2" (click)="show(category.categoryName)">{{category.categoryName}}</button> 
   </div>
 </div>
 <div *ngIf="initial==true">
@@ -25,21 +36,21 @@
             </div>
             <div class="card-body">
               <h5 class="card-title" ><b> {{item?.itemName}}</b> <button type="button" style="margin-left: 5px;" class="btn btn-sm btn-success starBtn">{{ratings[i%11]}} &#9733;</button></h5>
-            <p class="text-secondary cardDesc"><em>
-              {{item?.itemDesc}}
-            </em>
+              <p class="text-secondary cardDesc"><em>
+                {{item?.itemDesc}}
+              </em>
           </p>
           <h6 class="text-center">Price = {{item?.itemCost}}/-
              <span class="mx-1"> &#x2022;</span>
-              <button type="button" class="btn btn-sm btn-outline-warning">Serves {{serves[i%15]}}</button>   
+             <button type="button" class="btn btn-sm btn-outline-warning">Serves {{serves[i%15]}}</button>   
             </h6>
-          <div class="buttonAdd">
-            <button class="btn btn-primary" (click)="addToCart(item)">Add To Cart</button>
+            <div class="buttonAdd">
+              <button class="btn btn-primary" (click)="addToCart(item)">Add To Cart</button>
+            </div>
           </div>
         </div>
-      </div>
 
-    </div>
+      </div>
   </div>
 </div>
 </div>
@@ -48,5 +59,6 @@
   <div class="text-center my-5">
     <h1 class="text-dark">Out of Stock!!</h1>
     <h4 class="text-secondary">Will get back to you Soon!!</h4>
-    </div>
-  </ng-template>
+  </div>
+</ng-template>
+</div>

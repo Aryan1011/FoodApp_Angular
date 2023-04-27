@@ -18,6 +18,9 @@ export class ItemsComponent implements OnInit {
   ratings:any=[4.7,4.2,4.8,4.6,4.3,4.8,4.1,4.2,4.3,4.5,4.9]
   serves:any=[1,1,2,2,1,2,1,2,1,1,2,2,1,1,2]
  
+  isOpen?:boolean;
+
+
   constructor(private _itemApiService:itemApiService, private _categoryApiService:categoryApiService,
      private _foodcartApiService:foodcartApiService,
      private router:Router) { }
@@ -25,6 +28,15 @@ export class ItemsComponent implements OnInit {
 
   ngOnInit(): void {
    this.getTrueCategories();
+   this.setIsOpen();
+  }
+  setIsOpen(){
+    if(localStorage.getItem("open")){
+      this.isOpen=true;
+    }
+    else{
+      this.isOpen=false;
+    }
   }
 
   getTrueCategories(){

@@ -28,6 +28,7 @@ import { HelpComponent } from './help/help.component';
 import { MetricComponent } from './metric/metric.component'
 import { metricApiService } from './metric/metricapi.service';
 import { NgChartsModule } from 'ng2-charts';
+import { LoginAdminComponent } from './login-admin/login-admin.component';
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -47,7 +48,8 @@ import { NgChartsModule } from 'ng2-charts';
     CartComponent,
     MyOrdersComponent,
     HelpComponent,
-    MetricComponent
+    MetricComponent,
+    LoginAdminComponent
   ],
   imports: [
     CommonModule,

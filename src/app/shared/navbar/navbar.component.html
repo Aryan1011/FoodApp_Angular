@@ -42,14 +42,27 @@
           <li class="nav-item" routerLink="./metric" *ngIf="isAdmin" style="cursor: pointer;">
             <p class="nav-link mx-2 "><strong>Metrics</strong></p>
           </li>
-          <li class="nav-item " >
-            <button class="btn btn-primary" (click)="logoutAdmin()" *ngIf="isAdmin" style="cursor: pointer;">
-              Logout
-            </button>
-            <button class="btn btn-primary" (click)="logoutUser()" *ngIf="!isAdmin" style="cursor: pointer;">
-              Logout
-            </button>
-          </li>
+
+       
+
+          <div class="buttonDiv">
+
+            <li class="nav-item"  >
+              <button class="btn btn-danger mx-1" *ngIf="isAdmin && isOpen" (click)="closeStatus()">Close</button>
+              <button class="btn btn-success mx-1" *ngIf="isAdmin && !isOpen" (click)="openStatus()">Open</button>
+            </li>
+            
+            <li class="nav-item" >
+              <button class="btn btn-primary mx-1" (click)="logoutAdmin()" *ngIf="isAdmin" style="cursor: pointer;">
+                Logout
+              </button>
+              <button class="btn btn-primary mx-1" (click)="logoutUser()" *ngIf="!isAdmin" style="cursor: pointer;">
+                Logout
+              </button>
+            </li>
+            
+          </div>
+
         </ul>
       </div>
     </div>
